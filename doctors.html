@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أطباؤنا - عيادة الشفاء</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .navbar {
+      background-color: #0d6efd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ffc107;
+    }
+
+    h2 {
+      color: #0d6efd;
+      font-weight: bold;
+    }
+
+    .doctor-card img {
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .doctor-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .doctor-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: #ffc107;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">عيادة الشفاء</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link active" href="doctors.html">أطباؤنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="appointment.html">احجز موعد</a></li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">تواصل معنا</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- قائمة الأطباء -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">أطباؤنا</h2>
+    <div class="row g-4">
+      <!-- طبيب 1 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-ahmed.html">
+            <img src="images/احمديوسف.png" class="card-img-top" alt="د. أحمد علي" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-ahmed.html">د. أحمد علي</a></h5>
+            <p class="card-text">أخصائي أمراض القلب</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 2 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-sara.html">
+            <img src="images\ساره محمد.png" class="card-img-top" alt="د. سارة محمد" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-sara.html">د. سارة محمد</a></h5>
+            <p class="card-text">أخصائية أمراض القلب</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 3 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-khaled.html">
+            <img src="images/محمد ابراهيم.jpg" class="card-img-top" alt="د. خالد حسن" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="C:\Users\User\MyWebsite\js\cv.doctors\cv-khaled.html">د. خالد حسن</a></h5>
+            <p class="card-text">أخصائي الأمراض الجلدية</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 4 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="js/cv.doctors/cv-mona.html">
+            <img src="images/مني عبدالله.jpeg" class="card-img-top" alt="د. منى عبد الله" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="js/cv.doctors/cv-mona.html">د. منى عبد الله</a></h5>
+            <p class="card-text">أخصائية الأمراض الجلدية</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 5 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="js\cv.doctors\cv-youssef.html">
+            <img src="images/برهام.webp" class="card-img-top" alt="د. يوسف إبراهيم" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="js\cv.doctors\cv-youssef.html">د. يوسف إبراهيم</a></h5>
+            <p class="card-text">أخصائي الأمراض العصبية</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 6 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="js\cv.doctors\cv-laila.html">
+            <img src="images/ليلي-محمود.jpg" class="card-img-top" alt="د. ليلى محمود" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="js\cv.doctors\cv-laila.html">د. ليلى محمود</a></h5>
+            <p class="card-text">أخصائية الأمراض العصبية</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 7 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="doctor-cv-amr.html">
+            <img src="images\الزوز2.jpg" class="card-img-top" alt="د. عمرو سعيد" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="doctor-cv-amr.html">د. عمرو سعيد</a></h5>
+            <p class="card-text">أخصائي جراحة العظام</p>
+          </div>
+        </div>
+      </div>
+      <!-- طبيب 8 -->
+      <div class="col-md-4">
+        <div class="card doctor-card">
+          <a href="doctor-cv-hala.html">
+            <img src="images\ساره علي.jpg" class="card-img-top" alt="د. هالة أحمد" />
+          </a>
+          <div class="card-body text-center">
+            <h5 class="card-title"><a href="">د. هالة أحمد</a></h5>
+            <p class="card-text">أخصائية جراحة العظام</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- الفوتر -->
+  <footer>
+    جميع الحقوق محفوظة © 2025 - عيادة الشفاء
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

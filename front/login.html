@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول - عيادة الشفاء</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: url('images/صورة اللوجين.jpeg') no-repeat center center/cover;
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .login-container img {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .login-container h2 {
+      font-weight: bold;
+      color: #0d6efd;
+      margin-bottom: 20px;
+    }
+
+    .login-container .form-check-label {
+      margin-left: 10px;
+    }
+
+    .login-container .btn {
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .login-container .btn:hover {
+      background-color: #0b5ed7;
+      transform: scale(1.05);
+    }
+
+    .login-container .role-selection {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+    }
+
+    .login-container .role-selection .form-check {
+      flex: 1;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0.9rem;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    footer a {
+      color: #ffc107;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- صورة أعلى النموذج -->
+    <img src="images/اعلي النموذج.jpg" alt="عيادة الشفاء" />
+
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">اسم المستخدم</label>
+        <input type="text" class="form-control" id="username" placeholder="أدخل اسم المستخدم" required />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input type="password" class="form-control" id="password" placeholder="أدخل كلمة المرور" required />
+      </div>
+      <div class="role-selection">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="role" id="roleUser" value="user" checked />
+          <label class="form-check-label" for="roleUser">مريض</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="admin" />
+          <label class="form-check-label" for="roleAdmin">مسؤول</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">تسجيل الدخول</button>
+    </form>
+    <p id="errorMessage" class="text-danger text-center mt-3" style="display: none;">اسم المستخدم أو كلمة المرور أو الدور غير صحيح.</p>
+    <div id="forgotPassword" class="mt-3" style="display: none;">
+      <p>هل نسيت كلمة المرور؟ <a href="forgot-password.html" class="text-primary">استعادة كلمة المرور</a></p>
+    </div>
+    <div class="mt-3">
+      <p>ليس لديك حساب؟ <a href="register.html" class="text-primary">سجل الآن</a></p>
+    </div>
+  </div>
+
+  <footer>
+    جميع الحقوق محفوظة © 2025 - <a href="index.html">عيادة الشفاء</a>
+  </footer>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // بيانات تسجيل الدخول التجريبية
+      const users = [
+        { username: "user", password: "12345", role: "user" },
+        { username: "admin", password: "admin123", role: "admin" },
+      ];
+
+      // الحصول على بيانات المستخدم
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const selectedRole = document.querySelector('input[name="role"]:checked').value;
+
+      // التحقق من صحة البيانات
+      const user = users.find(
+        (u) => u.username === username && u.password === password && u.role === selectedRole
+      );
+
+      if (user) {
+        if (user.role === "admin") {
+          // تخزين حالة تسجيل الدخول كمسؤول
+          localStorage.setItem("isAdmin", "true");
+          // توجيه المسؤول إلى لوحة الإدارة
+          window.location.href = "admin.html";
+        } else if (user.role === "user") {
+          // تخزين حالة تسجيل الدخول كمريض
+          localStorage.setItem("isAdmin", "false");
+          // توجيه المستخدم إلى الصفحة الرئيسية
+          window.location.href = "index.html";
+        }
+      } else {
+        // عرض رسالة خطأ ورابط استعادة كلمة المرور
+        document.getElementById("errorMessage").textContent =
+          "اسم المستخدم أو كلمة المرور أو الدور غير صحيح.";
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("forgotPassword").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

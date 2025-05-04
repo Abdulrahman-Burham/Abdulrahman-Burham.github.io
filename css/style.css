@@ -1,0 +1,159 @@
+/* استيراد خط Google */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --accent: #20c997;
+  --danger: #dc3545;
+  --font-family: 'Tajawal', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--accent);
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky; /* تثبيت الشريط العلوي أثناء التمرير */
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  color: var(--dark);
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: var(--primary);
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary);
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
+}
+
+button.btn {
+  border-radius: 25px;
+  padding: 10px 25px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button.btn-primary {
+  background-color: var(--primary);
+  border: none;
+}
+button.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: scale(1.05); /* تأثير تكبير بسيط عند التمرير */
+}
+button.btn-primary:active {
+  background-color: #084298; /* لون أغمق عند الضغط */
+  transform: scale(0.95); /* تأثير الضغط */
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+  header {
+    padding: 40px 10px;
+  }
+  .navbar-nav {
+    text-align: center;
+  }
+  section {
+    padding: 30px 10px;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+/* دعم الوضع الداكن */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  .navbar {
+    background-color: var(--dark);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+  }
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    color: var(--light);
+  }
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  footer {
+    background-color: var(--dark);
+  }
+}
+

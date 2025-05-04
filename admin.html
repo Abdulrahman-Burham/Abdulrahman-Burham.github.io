@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الإدارة - عيادة الشفاء</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .navbar {
+      background-color: #0d6efd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ffc107;
+    }
+
+    h2 {
+      color: #0d6efd;
+      font-weight: bold;
+    }
+
+    .table-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .table th {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .table td, .table th {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+
+    .btn-danger:active {
+      transform: scale(0.95);
+    }
+
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: #ffc107;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">عيادة الشفاء</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="appointment.html">احجز موعد</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin.html">لوحة الإدارة</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- لوحة الإدارة -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">لوحة تحكم الإدارة</h2>
+    <div class="table-container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>اسم المريض</th>
+            <th>رقم الهاتف</th>
+            <th>المرض</th>
+            <th>الطبيب</th>
+            <th>الإجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="appointmentsTable">
+          <!-- سيتم ملء البيانات هنا -->
+        </tbody>
+      </table>
+      <p id="noAppointmentsMessage" class="text-center text-danger" style="display: none;">لا توجد مواعيد محجوزة.</p>
+    </div>
+  </section>
+
+  <!-- الفوتر -->
+  <footer>
+    جميع الحقوق محفوظة © 2025 - <a href="index.html">عيادة الشفاء</a>
+  </footer>
+
+  <script>
+    // التحقق من تسجيل الدخول كمسؤول
+    function checkAdminAccess() {
+      const isAdmin = localStorage.getItem("isAdmin");
+      if (!isAdmin || isAdmin !== "true") {
+        alert("يجب تسجيل الدخول كمسؤول للوصول إلى هذه الصفحة.");
+        window.location.href = "login.html";
+      }
+    }
+
+    // تحميل المواعيد من Local Storage وعرضها في الجدول
+    function loadAppointments() {
+      const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+      const tableBody = document.getElementById("appointmentsTable");
+      const noAppointmentsMessage = document.getElementById("noAppointmentsMessage");
+
+      // تفريغ الجدول
+      tableBody.innerHTML = "";
+
+      if (appointments.length === 0) {
+        noAppointmentsMessage.style.display = "block";
+        return;
+      } else {
+        noAppointmentsMessage.style.display = "none";
+      }
+
+      // إضافة المواعيد إلى الجدول
+      appointments.forEach((appointment, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${appointment.fullName}</td>
+          <td>${appointment.phone}</td>
+          <td>${appointment.disease}</td>
+          <td>${appointment.doctor}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deleteAppointment(${index})">حذف</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // حذف موعد
+    function deleteAppointment(index) {
+      const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+      appointments.splice(index, 1);
+      localStorage.setItem("appointments", JSON.stringify(appointments));
+      loadAppointments();
+      alert("تم حذف الموعد بنجاح.");
+    }
+
+    // التحقق من الوصول عند فتح الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAdminAccess();
+      loadAppointments();
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
